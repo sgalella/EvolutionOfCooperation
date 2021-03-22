@@ -1,0 +1,7 @@
+name: evolution-of-cooperation
+dependencies:
+  - python=3.6
+  - pip
+  - pip:
+    - matplotlib==3.3.2
+    - numpy==1.19.4
