@@ -11,11 +11,12 @@ player7 = strategies.Friedman()
 player8 = strategies.DavisCuny()
 player11 = strategies.Feld()
 player12 = strategies.Joss()
+player13 = strategies.Tullock()
 player15 = strategies.Random()
 
-players = [player1, player5, player7, player8, player11, player12, player15]
+players = [player1, player5, player7, player8, player11, player12, player13, player15]
 names = ['TitForTat', 'Shubik', 'Friedman', 'DavisCuny', 'Feld',
-         'Joss', 'Random']
+         'Joss', 'Tullock', 'Random']
 num_players = len(players)
 results = np.nan * np.ones((num_players, num_players))
 

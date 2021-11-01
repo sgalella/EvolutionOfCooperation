@@ -46,9 +46,7 @@ class Random(Strategy):
         super().__init__()
 
     def get_action(self, history):
-        if np.random.random() > 0.5:
-            return 0
-        return 1
+        return int(np.random.random() > 0.5)
 
 
 class Friedman(Strategy):
@@ -103,7 +101,7 @@ class Joss(Strategy):
         if history.size == 0:
             return 0
         if history[-1] == 0:
-            return 0 if np.random.random() > 0.1 else 1
+            return int(np.random.random() < 0.1)
         return 1
 
 
@@ -118,4 +116,19 @@ class Feld(Strategy):
         self.p_coop -= self.p_coop / 200
         if history[-1] == 1:
             return 1
-        return 0 if np.random.random() > (1 - self.p_coop) else 1
+        return int(np.random.random() > self.p_coop)
+
+
+class Tullock(Strategy):
+    def __init__(self):
+        super().__init__()
+
+    def get_action(self, history):
+        if history.size < 11:
+            return 0
+        else:
+            p_coop_op = (1 - history[:-10]).sum() / 10
+            if np.random.random() > p_coop_op * 0.9:
+                return 1
+            else:
+                return 0
